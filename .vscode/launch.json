@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "valuesFormatting": "parseText",       
+            "type": "gdb",
+            "request": "attach",
+            "name": "Attach to gdbserver",
+            "executable": "piton/design/chipset/rv64_platform/bootrom/linux/bootrom_linux.elf",
+            "target": "localhost:3333",
+            "remote": true,
+            "env": {
+                "PATH": "/opt/riscv/bin:${env:PATH}"
+            },
+            "cwd": "${workspaceRoot}", 
+            "gdbpath": "riscv64-unknown-elf-toolchain/bin/riscv64-unknown-elf-gdb",
+            //"stopAtEntry": true,
+            "stopAtConnect": true,
+        }
+    ]
+}

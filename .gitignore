@@ -7,6 +7,9 @@
 build/*
 !build/.keep
 
+# Ignore toolchain
+riscv64-unknown-elf-toolchain/
+
 # Ignore generated logs from back-end
 # Good for 10 levels of hierarchy
 piton/design/*/synopsys/*

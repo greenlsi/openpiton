@@ -1,16 +1,16 @@
 UART_FREQ ?= 30000000
-MAX_HARTS ?= 1
+MAX_HARTS ?= 2
 CROSSCOMPILE ?= riscv64-unknown-elf-
 CC = ${CROSSCOMPILE}gcc
 PYTHON=python3
 
-CFLAGS = -DMAX_HARTS=$(MAX_HARTS) -DUART_FREQ=$(UART_FREQ) -Os -ggdb -march=rv64imac -mabi=lp64 -Wall -mcmodel=medany -mexplicit-relocs
+CFLAGS = -DMAX_HARTS=$(MAX_HARTS) -DUART_FREQ=$(UART_FREQ) -Os -ggdb -march=rv64imac -mabi=lp64 -Wall -mcmodel=medany -mexplicit-relocs -ffreestanding
 CCASFLAGS = -mcmodel=medany -mexplicit-relocs
 LDFLAGS = -nostdlib -nodefaultlibs -nostartfiles
 
-INCLUDES = -I./ -I./src
+INCLUDES = -I./ -I./src -I./src/ed25519 -I./src/sha3
 
-SRCS_C = src/main.c src/uart.c src/spi.c src/sd.c src/gpt.c
+SRCS_C = src/main.c src/uart.c src/spi.c src/sd.c src/gpt.c src/ed25519/fe.c src/ed25519/ge.c src/ed25519/keypair.c src/ed25519/sc.c src/ed25519/sign.c src/ed25519/verify.c src/sha3/hwsha3.c src/memutils.c
 SRCS_ASM = startup.S
 OBJS_C = $(SRCS_C:.c=.o)
 OBJS_S = $(SRCS_ASM:.S=.o)

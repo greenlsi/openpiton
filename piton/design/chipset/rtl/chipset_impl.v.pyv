@@ -1242,4 +1242,50 @@ print(str)
 
 `endif // ifdef PITON_RV64_PLATFORM
 
+sha3_noc_top #(
+    .SLAVE_RESP_BYTEWIDTH(8),
+    `ifdef PITON_RV64_PLATFORM
+      .SWAP_ENDIANESS(1),
+    `else
+      .SWAP_ENDIANESS(0),
+    `endif
+    .ALIGN_RDATA(1)
+) sha3_noc_top_i (
+    .clk                  (chipset_clk),
+    .rst                  (~chipset_rst_n),
+
+    // input from noc2
+    .xbar_sha3_noc2_valid (buf_sha3_noc2_valid),
+    .xbar_sha3_noc2_data  (buf_sha3_noc2_data),
+    .sha3_xbar_noc2_ready (sha3_buf_noc2_ready),
+
+    //output to noc3
+    .sha3_xbar_noc3_valid (sha3_buf_noc3_valid),
+    .sha3_xbar_noc3_data  (sha3_buf_noc3_data),
+    .xbar_sha3_noc3_ready (buf_sha3_noc3_ready)
+);
+
+ed25519_noc_top #(
+    .SLAVE_RESP_BYTEWIDTH(8),
+    `ifdef PITON_RV64_PLATFORM
+      .SWAP_ENDIANESS(1),
+    `else
+      .SWAP_ENDIANESS(0),
+    `endif
+    .ALIGN_RDATA(1)
+) ed25519_noc_top_i (
+    .clk (chipset_clk),
+    .rst (~chipset_rst_n),
+    
+    // input from noc2
+    .xbar_ed25519_noc2_valid (buf_ed25519_noc2_valid),
+    .xbar_ed25519_noc2_data  (buf_ed25519_noc2_data),
+    .ed25519_xbar_noc2_ready (ed25519_buf_noc2_ready),
+
+    //output to noc3
+    .ed25519_xbar_noc3_valid (ed25519_buf_noc3_valid),
+    .ed25519_xbar_noc3_data  (ed25519_buf_noc3_data),
+    .xbar_ed25519_noc3_ready (buf_ed25519_noc3_ready)
+);
+
 endmodule

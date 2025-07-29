@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "uart.h": "c",
+        "sha3.h": "c",
+        "stdint.h": "c",
+        "info.h": "c",
+        "gpt.h": "c",
+        "ed25519.h": "c"
+    },
+    "files.watcherExclude": {
+        "**/target": true
+    }
+}

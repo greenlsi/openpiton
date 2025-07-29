@@ -645,6 +645,13 @@ set CHIPSET_RTL_IMPL_FILES [list \
     "${DV_ROOT}/design/chipset/io_ctrl/rtl/ciop_iob.v" \
     "${DV_ROOT}/design/chipset/io_ctrl/rtl/net_int_sync.v" \
     "${DV_ROOT}/design/chipset/io_ctrl/rtl/uart_top.v" \
+    "${DV_ROOT}/design/chipset/io_ctrl/rtl/sha3_noc_top.v" \
+    "${DV_ROOT}/design/chipset/io_ctrl/rtl/sha3_axi_wrapper.v" \
+    "${DV_ROOT}/design/chipset/io_ctrl/rtl/sha3.v" \
+    "${DV_ROOT}/design/chipset/io_ctrl/rtl/ed25519_base.v" \
+    "${DV_ROOT}/design/chipset/io_ctrl/rtl/ed25519_sign.v" \
+    "${DV_ROOT}/design/chipset/io_ctrl/rtl/ed25519_axi_wrapper.v" \
+    "${DV_ROOT}/design/chipset/io_ctrl/rtl/ed25519_noc_top.v" \
     "${DV_ROOT}/design/chipset/io_ctrl/rtl/uart_writer.v" \
     "${DV_ROOT}/design/chipset/io_ctrl/rtl/uart_reader.v" \
     "${DV_ROOT}/design/chipset/io_ctrl/rtl/uart_mux.v" \

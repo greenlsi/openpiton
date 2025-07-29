@@ -1,4 +1,5 @@
 // See LICENSE for license details.
+#include "smp.h"
 
 #ifndef RISCV_CSR_ENCODING_H
 #define RISCV_CSR_ENCODING_H
@@ -151,13 +152,18 @@
 #define IRQ_HOST     13
 
 #define DEFAULT_RSTVEC     0x00001000
-#define CLINT_BASE         0x02000000
+#define CLINT_BASE         0xfff1020000
 #define CLINT_SIZE         0x000c0000
+#define CLINT_MTIMECMP     0x4000
+#define CLINT_MTIME        0xBFF8
 #define EXT_IO_BASE        0x40000000
 #define DRAM_BASE          0x80000000
 
 #define _REG64(p, i) (*(volatile uint64_t *)((p) + (i)))
 #define _REG32(p, i) (*(volatile uint32_t *)((p) + (i)))
+
+#define CLINT_REG_64(offset) _REG64(CLINT_BASE, offset)
+#define CLINT_REG(offset) _REG32(CLINT_BASE, offset)
 
 // page table entry (PTE) fields
 #define PTE_V     0x001 // Valid
@@ -803,6 +809,7 @@
 #define CSR_MIE 0x304
 #define CSR_MTVEC 0x305
 #define CSR_MCOUNTEREN 0x306
+#define CSR_MCOUNTINHIBIT 0x320
 #define CSR_MSCRATCH 0x340
 #define CSR_MEPC 0x341
 #define CSR_MCAUSE 0x342
@@ -1297,6 +1304,7 @@ DECLARE_CSR(mideleg, CSR_MIDELEG)
 DECLARE_CSR(mie, CSR_MIE)
 DECLARE_CSR(mtvec, CSR_MTVEC)
 DECLARE_CSR(mcounteren, CSR_MCOUNTEREN)
+DECLARE_CSR(mcountinhibit, CSR_MCOUNTINHIBIT)
 DECLARE_CSR(mscratch, CSR_MSCRATCH)
 DECLARE_CSR(mepc, CSR_MEPC)
 DECLARE_CSR(mcause, CSR_MCAUSE)
